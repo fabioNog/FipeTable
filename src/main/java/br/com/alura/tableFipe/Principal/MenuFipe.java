@@ -6,11 +6,8 @@ import br.com.alura.tableFipe.service.ConsumoApi;
 import br.com.alura.tableFipe.service.ConverteDados;
 import org.springframework.stereotype.Component;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class MenuFipe {
@@ -105,6 +102,20 @@ public class MenuFipe {
             modeloLista.modelos().stream()
                     .sorted(Comparator.comparing(Dados::codigo))
                     .forEach(System.out::println);
+
+/*            System.out.println("\nDigite um trecho do nome a ser buscado");
+
+            var nomeVeiculo = leitura.nextLine();
+
+            List<Dados> modelosFiltrados = modeloLista.modelos().stream()
+                    .filter(m -> m.nome().toLowerCase().contains(nomeVeiculo.toLowerCase()))
+                    .collect(Collectors.toList());
+
+            System.out.println("\n Modelos FIltrados");
+
+            modelosFiltrados.forEach(System.out::println);*/
+
+
         } catch (NumberFormatException e) {
             System.out.println("Entrada inválida. O código da marca deve ser numérico.");
         } catch (Exception e) {
