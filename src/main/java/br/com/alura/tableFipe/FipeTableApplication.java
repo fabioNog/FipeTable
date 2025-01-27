@@ -1,11 +1,11 @@
 package br.com.alura.tableFipe;
 
-import br.com.alura.tableFipe.Principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import br.com.alura.tableFipe.Principal.Principal;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "br.com.alura.tableFipe")
 public class FipeTableApplication implements CommandLineRunner {
 
 	private final Principal principal;

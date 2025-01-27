@@ -21,10 +21,12 @@ public class MenuFipe {
     private static final int OPCAO_CAMINHAO = 3;
 
     private final ConsumoApi consumoApi;
-    private final ConverteDados conversor = new ConverteDados();
+    private final ConverteDados conversor;
 
-    public MenuFipe(ConsumoApi consumoApi) {
+    // Injeção de dependência
+    public MenuFipe(ConsumoApi consumoApi, ConverteDados conversor) {
         this.consumoApi = consumoApi;
+        this.conversor = conversor;
     }
 
     public void exibeMenu() {
