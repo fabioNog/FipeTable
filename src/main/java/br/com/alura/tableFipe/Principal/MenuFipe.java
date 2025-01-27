@@ -2,6 +2,7 @@ package br.com.alura.tableFipe.Principal;
 
 import br.com.alura.tableFipe.model.Dados;
 import br.com.alura.tableFipe.model.Modelos;
+import br.com.alura.tableFipe.model.Veiculo;
 import br.com.alura.tableFipe.service.ConsumoApi;
 import br.com.alura.tableFipe.service.ConverteDados;
 import org.springframework.stereotype.Component;
@@ -103,7 +104,7 @@ public class MenuFipe {
                     .sorted(Comparator.comparing(Dados::codigo))
                     .forEach(System.out::println);
 
-/*            System.out.println("\nDigite um trecho do nome a ser buscado");
+            System.out.println("\nDigite um trecho do nome a ser buscado");
 
             var nomeVeiculo = leitura.nextLine();
 
@@ -113,8 +114,31 @@ public class MenuFipe {
 
             System.out.println("\n Modelos FIltrados");
 
-            modelosFiltrados.forEach(System.out::println);*/
+            modelosFiltrados.forEach(System.out::println);
 
+            System.out.println("Digite por favor o código do modelo para buscar os valores de avaliação");
+
+            var codigoModelo = leitura.nextLine();
+
+            String enderecoAnos = enderecoModelos + "/" + codigoModelo + "/anos";
+
+            System.out.println(enderecoAnos);
+
+            resposta = consumoApi.obterDados(enderecoAnos);
+
+            List<Dados> anos = conversor.obterLista(resposta, Dados.class);
+
+            List<Veiculo> veiculos = new ArrayList<>();
+
+            for (int i = 0; i < anos.size(); i++) {
+                var getEnderecoAnos = enderecoAnos + "/" + anos.get(i).codigo();
+                resposta = consumoApi.obterDados(getEnderecoAnos);
+                Veiculo veiculo = conversor.obterDados(resposta, Veiculo.class);
+                veiculos.add(veiculo);
+            }
+
+            System.out.println("\nTodos os veiculos filtrados com avaliações por ano: ");
+            veiculos.forEach(System.out::println);
 
         } catch (NumberFormatException e) {
             System.out.println("Entrada inválida. O código da marca deve ser numérico.");
